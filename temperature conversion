@@ -1,0 +1,54 @@
+def celsius_to_fahrenheit(celsius):
+    return (celsius * 9/5) + 32
+
+def celsius_to_kelvin(celsius):
+    return celsius + 273.15
+
+def fahrenheit_to_celsius(fahrenheit):
+    return (fahrenheit - 32) * 5/9
+
+def fahrenheit_to_kelvin(fahrenheit):
+    return (fahrenheit + 459.67) * 5/9
+
+def kelvin_to_celsius(kelvin):
+    return kelvin - 273.15
+
+def kelvin_to_fahrenheit(kelvin):
+    return (kelvin * 9/5) - 459.67
+
+def convert_temperature(value, unit):
+    if unit.lower() == 'c':
+        celsius = value
+        fahrenheit = celsius_to_fahrenheit(celsius)
+        kelvin = celsius_to_kelvin(celsius)
+    elif unit.lower() == 'f':
+        fahrenheit = value
+        celsius = fahrenheit_to_celsius(fahrenheit)
+        kelvin = fahrenheit_to_kelvin(fahrenheit)
+    elif unit.lower() == 'k':
+        kelvin = value
+        celsius = kelvin_to_celsius(kelvin)
+        fahrenheit = kelvin_to_fahrenheit(kelvin)
+    else:
+        raise ValueError("Invalid unit. Please use 'C' for Celsius, 'F' for Fahrenheit, or 'K' for Kelvin.")
+    
+    return celsius, fahrenheit, kelvin
+
+def main():
+    try:
+        value = float(input("Enter the temperature value: "))
+        unit = input("Enter the unit of the temperature (C for Celsius, F for Fahrenheit, K for Kelvin): ")
+        
+        celsius, fahrenheit, kelvin = convert_temperature(value, unit)
+        
+        print(f"\nTemperature conversions:")
+        print(f"{value} {unit.upper()} is equivalent to:")
+        print(f"{celsius:.2f} °C")
+        print(f"{fahrenheit:.2f} °F")
+        print(f"{kelvin:.2f} K")
+    
+    except ValueError as e:
+        print(f"Error: {e}")
+
+if __name__ == "__main__":
+    main()
